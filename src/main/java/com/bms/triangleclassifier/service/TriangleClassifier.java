@@ -8,14 +8,14 @@ import java.math.BigDecimal;
 public class TriangleClassifier {
 
     public TriangleType classify(Triangle triangle) {
-        BigDecimal a = triangle.getSideA();
-        BigDecimal b = triangle.getSideB();
-        BigDecimal c = triangle.getSideC();
+        BigDecimal sideA = triangle.getSideA();
+        BigDecimal sideB = triangle.getSideB();
+        BigDecimal sideC = triangle.getSideC();
 
-        if (a.compareTo(b) == 0 && b.compareTo(c) == 0) {
+        if (sideA.compareTo(sideB) == 0 && sideB.compareTo(sideC) == 0) {
             return TriangleType.EQUILATERAL;
         }
-        if (a.compareTo(b) == 0 || b.compareTo(c) == 0 || a.compareTo(c) == 0) {
+        if (sideA.compareTo(sideB) == 0 || sideB.compareTo(sideC) == 0 || sideA.compareTo(sideC) == 0) {
             return TriangleType.ISOSCELES;
         }
         return TriangleType.SCALENE;
