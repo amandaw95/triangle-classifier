@@ -41,26 +41,26 @@ class ConsoleRunnerTest {
 
     @Test
     void exitsOnLowercaseExitCommand() {
-        runnerFor("exit").run();
+        runnerFor("exit\\n3 3 3").run();
         verifyNoInteractions(mockClassifier);
     }
 
     @Test
     void exitsOnUppercaseExitCommand() {
-        runnerFor("EXIT").run();
+        runnerFor("EXIT\\n3 3 3").run();
         verifyNoInteractions(mockClassifier);
     }
 
     @Test
     void exitsOnMixedCaseExitCommand() {
-        runnerFor("Exit").run();
+        runnerFor("Exit\\n3 3 3").run();
         verifyNoInteractions(mockClassifier);
     }
 
     @Test
     void exitsOnExitCommandWithSurroundingWhitespace() {
         // trim() is applied before equalsIgnoreCase — "  exit  " must be treated as "exit"
-        runnerFor("  exit  ").run();
+        runnerFor("  exit  \\n3 3 3").run();
         verifyNoInteractions(mockClassifier);
     }
 
@@ -106,7 +106,12 @@ class ConsoleRunnerTest {
         runnerFor("3 3 3\n3 4 5").run();
         verify(mockClassifier, times(2)).classify(any());
         String output = capturedOutput();
-        assertTrue(output.indexOf("Equilateral") < output.indexOf("Scalene"));
+        int equilateralIndex = output.indexOf("Equilateral");
+        int scaleneIndex = output.indexOf("Scalene");
+
+        assertTrue(equilateralIndex >= 0, "Expected Equilateral in output");
+        assertTrue(scaleneIndex > equilateralIndex,
+                "Expected Scalene after Equilateral");
     }
 
     @Test

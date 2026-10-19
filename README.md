@@ -4,6 +4,20 @@ A small Java console application that reads three side lengths and classifies th
 
 ---
 
+## Prerequisites
+
+- Java 21
+- Maven
+
+Check your installed versions:
+
+```bash
+java -version
+mvn -version
+```
+
+---
+
 ## Running the application
 
 ```bash

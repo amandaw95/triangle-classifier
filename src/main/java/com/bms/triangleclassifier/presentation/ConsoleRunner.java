@@ -41,14 +41,18 @@ public class ConsoleRunner {
     }
 
     private void classifyFromInput(String input) {
+        final Triangle triangle;
+
         try {
             BigDecimal[] sides = parseSides(input);
-            Triangle triangle = new Triangle(sides[0], sides[1], sides[2]);
-            TriangleType type = classifier.classify(triangle);
-            output.println(type.getDisplayName());
+            triangle = new Triangle(sides[0], sides[1], sides[2]);
         } catch (IllegalArgumentException e) {
             output.println( e.getMessage());
+            return;
         }
+
+        TriangleType type = classifier.classify(triangle);
+        output.println(type.getDisplayName());
     }
 
     private BigDecimal[] parseSides(String input) {
