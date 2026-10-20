@@ -57,7 +57,7 @@ public class ConsoleRunner {
 
     private BigDecimal[] parseSides(String input) {
 
-        if (input.isBlank()) {
+        if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(
                 "Input cannot be empty. Please enter three " +
                         "triangle side lengths separated by spaces."

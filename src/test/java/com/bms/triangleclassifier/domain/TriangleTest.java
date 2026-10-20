@@ -46,4 +46,10 @@ class TriangleTest {
         assertThrows(IllegalArgumentException.class,
             () -> new Triangle(new BigDecimal("1"), new BigDecimal("2"), new BigDecimal("10")));
     }
+
+    @Test
+    void rejectsNullSide() {
+        assertThrows(IllegalArgumentException.class,
+            () -> new Triangle(null, new BigDecimal("4"), new BigDecimal("5")));
+    }
 }
